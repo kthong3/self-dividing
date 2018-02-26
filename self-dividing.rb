@@ -13,5 +13,9 @@
 # return output array
 
 def is_self_dividing?(upper, lower)
+  range = (upper..lower).to_a
+  output = []
 
 end
+
+is_self_dividing?(1,10)
