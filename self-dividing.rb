@@ -17,9 +17,11 @@ def is_self_dividing?(upper, lower)
   output = []
 
   range.each do |number|
-    numbers = number.split("")
-    p numbers
-
+    digits = number.split("")
+    p digits
+    digits.each do |digit|
+      p digit
+    end
   end
 
 end
