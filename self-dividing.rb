@@ -13,8 +13,14 @@
 # return output array
 
 def is_self_dividing?(upper, lower)
-  range = (upper..lower).to_a
+  range = (upper.to_s..lower.to_s).to_a
   output = []
+
+  range.each do |number|
+    numbers = number.split("")
+    p numbers
+
+  end
 
 end
 
