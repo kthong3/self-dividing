@@ -18,11 +18,21 @@ def is_self_dividing?(upper, lower)
   output = []
 
   range_str.delete_if {|input| input.include?("0") }
-  p range_str
 
   digits = range_str.map! {|number| number.split("")}
+  digits.each do |digit_array|
+    number = digit_array.join("").to_i
+    divisible = []
 
+    digit_array.each do |digit|
+      if number % digit.to_i == 0
+        divisible << digit
+      end
 
+      p divisible
+    end
+  end
+  p output
 end
 
 is_self_dividing?(1,20)
