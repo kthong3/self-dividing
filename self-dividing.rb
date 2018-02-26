@@ -20,21 +20,31 @@ def is_self_dividing?(upper, lower)
   range_str.delete_if {|input| input.include?("0") }
 
   digits = range_str.map! {|number| number.split("")}
+
+  # iterate through nested array
   digits.each do |digit_array|
     number = digit_array.join("").to_i
     divisible = []
 
+    # iterate in each array of digits
     digit_array.each do |digit|
-      if number % digit.to_i == 0
+      if is_divisible_number?(number, digit)
         divisible << digit
       end
 
+      # only add to output array if all digits are divisible
       if divisible.join("").to_i == number
         output << number
       end
     end
   end
+
   p output
 end
+
+def is_divisible_number?(number, digit)
+  number % digit.to_i == 0
+end
+
 
 is_self_dividing?(1,22)
