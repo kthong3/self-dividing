@@ -29,7 +29,9 @@ def is_self_dividing?(upper, lower)
         divisible << digit
       end
 
-      p divisible
+      if divisible.join("").to_i == number
+        output << number
+      end
     end
   end
   p output
