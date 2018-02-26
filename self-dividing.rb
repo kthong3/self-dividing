@@ -37,4 +37,4 @@ def is_self_dividing?(upper, lower)
   p output
 end
 
-is_self_dividing?(1,20)
+is_self_dividing?(1,22)
