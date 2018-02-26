@@ -20,15 +20,9 @@ def is_self_dividing?(upper, lower)
   range_str.delete_if {|input| input.include?("0") }
   p range_str
 
-  range_str.each do |number|
-    digits = number.split("")
+  digits = range_str.map! {|number| number.split("")}
 
-    digits.each do |digit|
-      if number.to_i % digit.to_i == 0
-        p digit
-      end
-    end
-  end
+
 end
 
-is_self_dividing?(1,12)
+is_self_dividing?(1,20)
