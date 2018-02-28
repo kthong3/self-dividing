@@ -13,28 +13,49 @@
   # add integer to output array if divisible by all digits
 # return output array
 
-def is_self_dividing?(upper, lower)
-  range_str = (upper.to_s..lower.to_s).to_a
-  output = []
+def is_self_dividing?(lower, upper)
+  range_str = (lower.to_s..upper.to_s).to_a
 
   range_str.delete_if {|input| input.include?("0") }
 
-  digits = range_str.map! {|number| number.split("")}
-  digits.each do |digit_array|
-    number = digit_array.join("").to_i
-    divisible = []
+  number_strings = split_range(range_str)
 
-    digit_array.each do |digit|
-      if number % digit.to_i == 0
-        divisible << digit
-      end
-
-      if divisible.join("").to_i == number
-        output << number
-      end
-    end
-  end
-  p output
+  output = add_to_output(number_strings)
 end
 
-is_self_dividing?(1,22)
+def split_range(range_array)
+  range_array.map! {|number| number.split("")}
+end
+
+# input: array of number strings
+# output: array of divisible number strings
+# if number strings are the same as input, it is divisible
+def find_divisibles(number, digits_array)
+  divisibles = []
+  digits_array.each do |digit_str|
+    if is_divisible_by_digit?(number, digit_str)
+       divisibles << digit_str
+    end
+  end
+  divisibles
+end
+
+def is_divisible_by_digit?(number, digit_str)
+  number % digit_str.to_i == 0
+end
+
+def add_to_output(number_strings)
+  output = []
+  number_strings.each do |digit_array|
+    number = digit_array.join("").to_i
+    divisibles_in_array = find_divisibles(number, digit_array)
+
+    # only add to output array if all digits are divisible
+    if divisibles_in_array.join("").to_i == number
+      output << number
+    end
+  end
+  output
+end
+
+p is_self_dividing?(1,22)
