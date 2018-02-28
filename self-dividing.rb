@@ -19,7 +19,8 @@ def is_self_dividing?(upper, lower)
 
   range_str.delete_if {|input| input.include?("0") }
 
-  digits = range_str.map! {|number| number.split("")}
+  digits = split_range(range_str)
+  p digits
 
   # iterate through nested array
   digits.each do |digit_array|
@@ -41,6 +42,15 @@ def is_self_dividing?(upper, lower)
 
   p output
 end
+
+def split_range(range_array)
+  range_array.map! {|number| number.split("")}
+end
+
+def check_for
+
+end
+
 
 def is_divisible_number?(number, digit)
   number % digit.to_i == 0
