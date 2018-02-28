@@ -13,8 +13,8 @@
   # add integer to output array if divisible by all digits
 # return output array
 
-def is_self_dividing?(upper, lower)
-  range_str = (upper.to_s..lower.to_s).to_a
+def is_self_dividing?(lower, upper)
+  range_str = (lower.to_s..upper.to_s).to_a
 
   range_str.delete_if {|input| input.include?("0") }
 
