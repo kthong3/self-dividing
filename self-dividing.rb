@@ -15,24 +15,12 @@
 
 def is_self_dividing?(upper, lower)
   range_str = (upper.to_s..lower.to_s).to_a
-  output = []
+
   range_str.delete_if {|input| input.include?("0") }
 
   number_strings = split_range(range_str)
 
-  # iterate through nested array
-  number_strings.each do |digit_array|
-    number = digit_array.join("").to_i
-
-    divisibles_in_array = find_divisibles(number, digit_array)
-
-    # only add to output array if all digits are divisible
-    if divisibles_in_array.join("").to_i == number
-      output << number
-    end
-  end
-
-  p output
+  output = add_to_output(number_strings)
 end
 
 def split_range(range_array)
@@ -56,10 +44,18 @@ def is_divisible_by_digit?(number, digit_str)
   number % digit_str.to_i == 0
 end
 
-# def add_to_output(number, possible_divisible_numbers)
-#   output = []
+def add_to_output(number_strings)
+  output = []
+  number_strings.each do |digit_array|
+    number = digit_array.join("").to_i
+    divisibles_in_array = find_divisibles(number, digit_array)
 
-#   p output
-# end
+    # only add to output array if all digits are divisible
+    if divisibles_in_array.join("").to_i == number
+      output << number
+    end
+  end
+  output
+end
 
-is_self_dividing?(1,22)
+p is_self_dividing?(1,22)
