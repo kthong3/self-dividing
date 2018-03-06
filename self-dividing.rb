@@ -22,9 +22,8 @@ def is_self_dividing?(lower, upper)
   # split each number in range into separate string arrays
   number_strings = split_range(range_without_zeros)
 
-  output = add_only_divisibles(number_strings)
+  output = find_self_dividing(number_strings)
 end
-
 
 def delete_zeros(range_str_array)
   range_str_array.delete_if {|input| input.include?("0") }
@@ -37,20 +36,21 @@ end
 # input: array of number strings
 # output: array of divisible number strings
 # if number strings are the same as input, it is divisible
-def find_divisibles(number, digits_array)
-  divisibles = digits_array.select {|digit| is_divisible_by_digit?(number, digit)}
+def find_divisibles(number_str, digits_array)
+  divisibles = digits_array.select {|digit| is_divisible_by_digit?(number_str, digit)}
 end
 
 def is_divisible_by_digit?(number, digit_str)
   number % digit_str.to_i == 0
 end
 
-# only add divisible numbers to output array if all digits are divisible
-def add_only_divisibles(number_strings)
+# only add self-dividing numbers to output array if all digits are divisible
+def find_self_dividing(number_strings)
   output = []
-  number_strings.each do |digit_array|
-    number = digit_array.join("").to_i
-    divisibles_in_array = find_divisibles(number, digit_array)
+  number_strings.each do |num_string|
+    number = num_string.join("").to_i
+    divisibles_in_array = find_divisibles(number, num_string)
+
     if divisibles_in_array.join("").to_i == number
       output << number
     end
